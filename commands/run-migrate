@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# go back to root dir
+cd "${0%/*}/.."
+
+docker-compose up -d database
+docker-compose run --rm backend wait-for-it.sh -s -t 10 database:5432 -- python manage.py migrate $@
