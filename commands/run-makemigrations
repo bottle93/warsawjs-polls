@@ -3,5 +3,7 @@
 # go back to root dir
 cd "${0%/*}/.."
 
+
+echo "Creating migrations..."
 docker-compose run --rm backend python manage.py makemigrations $@
-docker-compose run --rm backend chmod -R $USER .
+docker-compose run --rm backend chown -R $UID .

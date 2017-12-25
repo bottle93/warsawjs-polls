@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# go back to root dir
+cd "${0%/*}/.."
+
+./commands/run-migrate
+./commands/run-create-admin
+

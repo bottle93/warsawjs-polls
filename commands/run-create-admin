@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# go back to root dir
+cd "${0%/*}/.."
+
+echo "Answer following questions to create admin user"
+docker-compose run --rm backend python manage.py createsuperuser
