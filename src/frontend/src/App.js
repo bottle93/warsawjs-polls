@@ -5,25 +5,32 @@ import axios from 'axios';
 
 
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             data: null,
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios.get('/api/polls/').then(response =>
             this.setState({
                 data: response.data,
             })
-        )
+        ).catch(err => console.log('error!'))
+    }
+
+    submitData(data) {
+        console.log(data)
     }
 
     render() {
-            if(this.state.data !== null){
+            if(this.state.data !== null) {
                 return (
-                    < FormSheet pollData={this.state.data[1]}/>
+                    <FormSheet
+                        pollData={this.state.data[1]}
+                        onSubmit={value => this.submitData(value)} //otrzymanie danych z FormSheet
+                    />
                 );
             } else {
                return <div>

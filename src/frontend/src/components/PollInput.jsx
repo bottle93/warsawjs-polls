@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 export default class PollInput extends Component {
-    constructor(props){
-        super(props);
-    }
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                <label htmlFor={this.props.options.id}>{this.props.questionText}</label>
-                <input type="text" placeholder='wpisz odpowiedź' id={this.props.options.id}/>
+                <label> {this.props.questionText} </label>
+                <textarea
+                    type="text"
+                    placeholder='wpisz odpowiedź'
+                    value={this.props.inputValue}
+                    onChange={e => this.props.onChange(e.target.value)}
+                />
             </div>
         )
     }
+}
+
+PollInput.propTypes = {
+    questionText: PropTypes.string.isRequired,
+    inputValue: PropTypes.string,
+    onChange: PropTypes.func.isRequired  //sprawdzamy czy przekazany props jest funkcją
 }
