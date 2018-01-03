@@ -71,6 +71,7 @@ export default class FormSheet extends Component{
                             name={name}
                             inputValue={this.state.data[name]}
                             onChange={value => {this.setValue(name, value)}}
+                            key={name}
                         />
                     )
                 case 'text':
@@ -79,6 +80,7 @@ export default class FormSheet extends Component{
                             questionText={elem.text}
                             inputValue={this.state.data[name]}
                             onChange={value => {this.setValue(name, value)}}
+                            key={name}
                         />
                     )
                 case 'options':
@@ -88,6 +90,7 @@ export default class FormSheet extends Component{
                             options={elem.options}
                             inputValue={this.state.data[name]}
                             onChange={value => {this.setValue(name, value)}}
+                            key={name}
                         />
                     )
             }
