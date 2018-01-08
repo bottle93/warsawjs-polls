@@ -10,3 +10,10 @@ services:
     ports:
       - 8000:8000
     command: wait-for-it.sh -s -t 10 database:5432 -- python -u manage.py runserver 0.0.0.0:8000
+
+  frontend:
+    image: valian/docker-node-autoinstaller
+    network_mode: host
+    volumes:
+      - ./src/frontend:/srv
+    command: npm start
