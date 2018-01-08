@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Progress from 'react-progressbar';
 import PollOptionField from './PollOptionField';
 import PollScore from './PollScore';
 import PollInput from './PollInput';
@@ -33,7 +34,7 @@ export default class FormSheet extends Component{
     }
 
     prevQuestion(){
-        if(this.state.counter > 0 && this.state.counter < this.props.pollData.questions.length){
+        if(this.state.counter > 0 && this.state.counter <= this.props.pollData.questions.length){
             this.setState({
                 counter: this.state.counter - 1,
             })
@@ -44,15 +45,21 @@ export default class FormSheet extends Component{
 
 
     renderComponent(component) {
-        const shouldShowButtons = this.state.counter !== this.props.pollData.questions.length-1
+        const shouldShowButtons = this.state.counter !== this.props.pollData.questions.length
         return (
-            <form action="" onSubmit={e => this.letsSubmit(e)}>
+            <form action=""
+                  onSubmit={e => this.letsSubmit(e)}
+                  className='formsheet__form-main'>
+                <div className='formsheet__form-title'>
+                    <p className='formsheet__form-title--text'>{this.props.pollData.name}</p>
+                    <Progress completed={100/(this.props.pollData.questions.length) * (this.state.counter)}/>
+                </div>
                 <div>
                     {component}
                     {shouldShowButtons &&
-                        <div>
-                            <button onClick={() => this.prevQuestion()}>PREV</button>
-                            <button onClick={() => this.nextQuestion()}>NEXT</button>
+                        <div className='formsheet__button-container'>
+                            <button onClick={() => this.prevQuestion()} className='formsheet__button'>Prev</button>
+                            <button onClick={() => this.nextQuestion()} className='formsheet__button'>Next</button>
                         </div>}
                 </div>
             </form>
@@ -60,9 +67,9 @@ export default class FormSheet extends Component{
     }
 
     render() {
-        if (this.state.counter < this.props.pollData.questions.length-1) {
-            const elem = this.props.pollData.questions[this.state.counter]
-            const name = elem.id.toString()
+        if (this.state.counter <= this.props.pollData.questions.length-1) {
+            const elem = this.props.pollData.questions[this.state.counter];
+            const name = elem.id.toString();
             switch (elem.type) {
                 case 'score':
                     return this.renderComponent(
@@ -73,7 +80,7 @@ export default class FormSheet extends Component{
                             onChange={value => {this.setValue(name, value)}}
                             key={name}
                         />
-                    )
+                    );
                 case 'text':
                     return this.renderComponent (
                         <PollInput
@@ -82,7 +89,7 @@ export default class FormSheet extends Component{
                             onChange={value => {this.setValue(name, value)}}
                             key={name}
                         />
-                    )
+                    );
                 case 'options':
                     return this.renderComponent(
                         <PollOptionField
@@ -94,11 +101,11 @@ export default class FormSheet extends Component{
                         />
                     )
             }
-        } else if(this.state.counter === this.props.pollData.questions.length-1) {
+        } else if(this.state.counter > this.props.pollData.questions.length-1) {
             return this.renderComponent(
                 <div>
                     <p>Dziękujemy za wypełnienie ankiety</p>
-                    <button onClick={() => this.prevQuestion()}>PREV</button>
+                    <button onClick={() => this.prevQuestion()}>Prev</button>
                     <input type="submit" value='Submit'/>
                 </div>
             )

@@ -25,19 +25,21 @@ class App extends Component {
     }
 
     render() {
-            if(this.state.data !== null) {
-                return (
+        if(this.state.data !== null) {
+            return (
+                <div>
                     <FormSheet
                         pollData={this.state.data[1]}
                         onSubmit={value => this.submitData(value)} //otrzymanie danych z FormSheet
                     />
-                );
-            } else {
-               return <div>
-                    Loading...
                 </div>
-            }
-  }
+            );
+        } else {
+            return <div>
+                Loading...
+            </div>
+        }
+    }
 }
 
 export default App;

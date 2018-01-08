@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 export default class PollOptionField extends Component {
     render() {
         return (
-            <fieldset>
+            <fieldset className='polloptionfield__main'>
                 <legend>
                     <p> {this.props.questionText} </p>
                 </legend>
                 {this.props.options.map((elem, index)=> {
                     return(
-                        <div key={index}>
-                            <label htmlFor={elem.id}> {elem.text} </label>
+                        <div key={index} className='polloptionfield__label-container'>
                             <input
                                 type="radio"
                                 id={elem.id}
@@ -19,6 +18,7 @@ export default class PollOptionField extends Component {
                                 value={elem.id}
                                 onChange={e => this.props.onChange(e.target.value)}
                             />
+                            <label htmlFor={elem.id}> {elem.text} </label>
                         </div>
                     )
                 })}

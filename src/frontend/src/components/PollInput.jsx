@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export default class PollInput extends Component {
     render() {
         return (
-            <div>
+            <div className='pollinput__main'>
                 <label> {this.props.questionText} </label>
                 <textarea
                     type="text"
@@ -22,4 +22,4 @@ PollInput.propTypes = {
     questionText: PropTypes.string.isRequired,
     inputValue: PropTypes.string,
     onChange: PropTypes.func.isRequired  //sprawdzamy czy przekazany props jest funkcją
-}
+};

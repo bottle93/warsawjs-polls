@@ -12,15 +12,16 @@ export default class PollScore extends Component {
     }
     render() {
         return (
-            <fieldset>
+            <fieldset className='pollscore__main'>
                 <legend>
                     <p> {this.props.questionText} </p>
                 </legend>
+                <label> 1 </label>
                 {this.state.scoreTab.map((elem, index)=> {
                     return(
-                        <div key={index}>
-                            <label htmlFor={elem}> {elem} </label>
+                        <div key={index} className='pollscore__input-container'>
                             <input
+                                className='pollscore__input'
                                 type="radio"
                                 id={elem}
                                 name={this.props.name}
@@ -31,6 +32,7 @@ export default class PollScore extends Component {
                         </div>
                     )
                 })}
+                <label> 5 </label>
             </fieldset>
         )
     }

@@ -1,28 +1,53 @@
-.App {
+*{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.formsheet__form-main {
+  margin: 0 auto;
+  max-width: 800px;
+  border: 1px solid red;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.formsheet__button-container {
+  display: flex;
+  justify-content: space-between;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.polloptionfield__main{
+  border: 0;
 }
 
-.App-title {
-  font-size: 1.5em;
+.pollscore__main {
+  border: 0;
 }
 
-.App-intro {
-  font-size: large;
+.pollinput__main {
+  border: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.pollscore__input-container {
+  display: inline;
+
 }
+.polloptionfield__label-container {
+  margin: 0 auto;
+  padding: 10px;
+  text-align: left;
+}
+
+.polloptionfield__label-container label {
+  text-align: right;
+}
+
