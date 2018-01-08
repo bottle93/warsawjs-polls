@@ -5,4 +5,4 @@ cd "${0%/*}/.."
 
 ./commands/run-migrate
 ./commands/run-create-admin
-
+./commands/manage create_data

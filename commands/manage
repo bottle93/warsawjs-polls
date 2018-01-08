@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# go back to root dir
+cd "${0%/*}/.."
+
+docker-compose run --rm backend python manage.py ${@:1}
