@@ -69,4 +69,5 @@ class QuestionAnswer(BaseModel):
         on_delete='DELETE', null=True, blank=True)
     text = models.TextField(
         null=True, blank=True)
-    score = models.SmallIntegerField()
+    score = models.SmallIntegerField(
+        null=True, blank=True)
