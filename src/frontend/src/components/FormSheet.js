@@ -89,7 +89,7 @@ export default class FormSheet extends Component{
                             key={name}
                         />
                     );
-                case 'options':
+                case 'option':
                     return this.renderComponent(
                         <PollOptionField
                             questionText={elem.text}
