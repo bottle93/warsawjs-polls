@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import FormSheet from './components/FormSheet'
+import FormSheet from './components/FormSheet';
+import Navigation from './components/Navigation';
 import axios from 'axios';
 
 
@@ -13,7 +14,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/polls/2').then(response =>
+        axios.get(`/api/polls/${this.props.match.params.poll}`).then(response =>
             this.setState({
                 data: response.data,
             })
@@ -43,6 +44,7 @@ class App extends Component {
         if(this.state.data !== null) {
             return (
                 <div>
+                    <a href="/">Powrót</a>
                     <FormSheet
                         pollData={this.state.data}
                         onSubmit={value => this.submitData(value)} //otrzymanie danych z FormSheet

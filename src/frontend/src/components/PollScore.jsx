@@ -17,9 +17,9 @@ export default class PollScore extends Component {
                     <p> {this.props.questionText} </p>
                 </legend>
                 <label> 1 </label>
-                {this.state.scoreTab.map((elem, index)=> {
+                {this.state.scoreTab.map((elem)=> {
                     return(
-                        <div key={index} className='pollscore__input-container'>
+                        <div key={elem} className='pollscore__input-container'>
                             <input
                                 className='pollscore__input'
                                 type="radio"
@@ -41,6 +41,6 @@ export default class PollScore extends Component {
 
 PollScore.propTypes = {
     questionText: PropTypes.string.isRequired,
-    inputValue: PropTypes.string,
+    inputValue: PropTypes.number,
     onChange: PropTypes.func.isRequired  //sprawdzamy czy przekazany props jest funkcją
 }

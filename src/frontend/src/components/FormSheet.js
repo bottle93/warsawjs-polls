@@ -10,6 +10,7 @@ export default class FormSheet extends Component{
         this.state = {
             data: {},
             counter: 0,
+            error : false,
         }
     }
 
@@ -25,13 +26,21 @@ export default class FormSheet extends Component{
     }
 
     nextQuestion(){
-        if(this.state.counter >= 0 && this.state.counter < this.props.pollData.questions.length){
+        if(Object.values(this.state.data)[this.state.counter] !== undefined){
+            if(this.state.counter >= 0 && this.state.counter < this.props.pollData.questions.length){
+                this.setState({
+                    counter: this.state.counter + 1,
+                    error: false
+                })
+            }
+            console.log('next' + this.state.counter)
+        } else {
             this.setState({
-                counter: this.state.counter + 1
+                error: true
             })
         }
-        console.log('next' + this.state.counter)
     }
+
 
     prevQuestion(){
         if(this.state.counter > 0 && this.state.counter <= this.props.pollData.questions.length){
@@ -45,7 +54,8 @@ export default class FormSheet extends Component{
 
 
     renderComponent(component) {
-        const shouldShowButtons = this.state.counter !== this.props.pollData.questions.length
+        const shouldShowButtons = this.state.counter !== this.props.pollData.questions.length;
+        const showAlert = Object.values(this.state.data)[this.state.counter] === undefined && this.state.error === true;
         return (
             <form action=""
                   className='formsheet__form-main'>
@@ -55,6 +65,9 @@ export default class FormSheet extends Component{
                 </div>
                 <div>
                     {component}
+                    {showAlert && <div>
+                        Proszę wprowadzić odpowiedź
+                    </div>}
                     {shouldShowButtons &&
                         <div className='formsheet__button-container'>
                             <button type="button" onClick={() => this.prevQuestion()} className='formsheet__button'>Prev</button>

@@ -8,9 +8,9 @@ export default class PollOptionField extends Component {
                 <legend>
                     <p> {this.props.questionText} </p>
                 </legend>
-                {this.props.options.map((elem, index)=> {
+                {this.props.options.map((elem)=> {
                     return(
-                        <div key={index} className='polloptionfield__label-container'>
+                        <div key={elem.id} className='polloptionfield__label-container'>
                             <input
                                 type="radio"
                                 id={elem.id}
