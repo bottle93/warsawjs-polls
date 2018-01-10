@@ -27,7 +27,7 @@ export default class PollScore extends Component {
                                 name={this.props.name}
                                 value={elem}
                                 checked={elem === this.props.inputValue}
-                                onChange={e => this.props.onChange(parseInt(e.target.value))}
+                                onChange={e => this.props.onChange(parseInt(e.target.value, 10))}
                             />
                         </div>
                     )
