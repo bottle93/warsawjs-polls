@@ -35,7 +35,7 @@ class QuestionAnswerSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("No text response submitted")
         if question.type == models.Question.SCORE and not score:
             raise serializers.ValidationError("No score submitted")
-        if question.type == models.Question.OPTIONS:
+        if question.type == models.Question.OPTION:
             if not option:
                 raise serializers.ValidationError("No option selected")
             if option.question_id != question.pk:
