@@ -9,7 +9,7 @@ export default class FormSheet extends Component{
         super(props);
         this.state = {
             data: {},
-            counter: 0,
+            currentQuestionNumber: 0,
             error : false,
         }
     }
@@ -26,14 +26,13 @@ export default class FormSheet extends Component{
     }
 
     nextQuestion(){
-        if(Object.values(this.state.data)[this.state.counter] !== undefined){
-            if(this.state.counter >= 0 && this.state.counter < this.props.pollData.questions.length){
+        if(Object.values(this.state.data)[this.state.currentQuestionNumber] !== undefined){
+            if(this.state.currentQuestionNumber >= 0 && this.state.currentQuestionNumber < this.props.pollData.questions.length){
                 this.setState({
-                    counter: this.state.counter + 1,
+                    currentQuestionNumber: this.state.currentQuestionNumber + 1,
                     error: false
                 })
             }
-            console.log('next' + this.state.counter)
         } else {
             this.setState({
                 error: true
@@ -43,25 +42,23 @@ export default class FormSheet extends Component{
 
 
     prevQuestion(){
-        if(this.state.counter > 0 && this.state.counter <= this.props.pollData.questions.length){
+        if(this.state.currentQuestionNumber > 0 && this.state.currentQuestionNumber <= this.props.pollData.questions.length){
             this.setState({
-                counter: this.state.counter - 1,
+                currentQuestionNumber: this.state.currentQuestionNumber - 1,
             })
         }
-        console.log('prev' + this.state.counter)
-
     }
 
 
     renderComponent(component) {
-        const shouldShowButtons = this.state.counter !== this.props.pollData.questions.length;
-        const showAlert = Object.values(this.state.data)[this.state.counter] === undefined && this.state.error === true;
+        const shouldShowButtons = this.state.currentQuestionNumber !== this.props.pollData.questions.length;
+        const showAlert = Object.values(this.state.data)[this.state.currentQuestionNumber] === undefined && this.state.error === true;
         return (
             <form action=""
                   className='formsheet__form-main'>
                 <div className='formsheet__form-title'>
                     <p className='formsheet__form-title--text'>{this.props.pollData.name}</p>
-                    <Progress completed={100/(this.props.pollData.questions.length) * (this.state.counter)}/>
+                    <Progress completed={100/(this.props.pollData.questions.length) * (this.state.currentQuestionNumber)}/>
                 </div>
                 <div>
                     {component}
@@ -79,8 +76,8 @@ export default class FormSheet extends Component{
     }
 
     render() {
-        if (this.state.counter <= this.props.pollData.questions.length-1) {
-            const elem = this.props.pollData.questions[this.state.counter];
+        if (this.state.currentQuestionNumber <= this.props.pollData.questions.length-1) {
+            const elem = this.props.pollData.questions[this.state.currentQuestionNumber];
             const name = elem.id.toString();
             switch (elem.type) {
                 case 'score':
@@ -112,8 +109,16 @@ export default class FormSheet extends Component{
                             key={name}
                         />
                     )
+                default:
+                    return this.renderComponent(
+                        <div>
+                            <p>This question type is currently not supported,
+                                please contact with us to solve this problem.
+                            </p>
+                        </div>
+                    )
             }
-        } else if(this.state.counter > this.props.pollData.questions.length-1) {
+        } else if(this.state.currentQuestionNumber > this.props.pollData.questions.length-1) {
             return this.renderComponent(
                 <div>
                     <p>Dziękujemy za wypełnienie ankiety</p>
