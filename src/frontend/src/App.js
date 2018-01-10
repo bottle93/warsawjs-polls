@@ -13,15 +13,30 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/polls/').then(response =>
+        axios.get('/api/polls/2').then(response =>
             this.setState({
                 data: response.data,
             })
         ).catch(err => console.log('error!'))
     }
 
-    submitData(data) {
-        console.log(data)
+    submitData(value) {
+
+        const answers = this.state.data.questions.map(q => {
+            return {
+                question: q.id,
+                [q.type]: value[q.id]
+            }
+        });
+
+        const userAnswersTab = {
+            poll: this.state.data.id,
+            answers
+        }
+
+        axios.post('/api/submissions/', userAnswersTab)
+            .then(response => console.log(response))
+            .catch(err => console.log('error!' + err))
     }
 
     render() {
@@ -29,7 +44,7 @@ class App extends Component {
             return (
                 <div>
                     <FormSheet
-                        pollData={this.state.data[1]}
+                        pollData={this.state.data}
                         onSubmit={value => this.submitData(value)} //otrzymanie danych z FormSheet
                     />
                 </div>

@@ -48,7 +48,6 @@ export default class FormSheet extends Component{
         const shouldShowButtons = this.state.counter !== this.props.pollData.questions.length
         return (
             <form action=""
-                  onSubmit={e => this.letsSubmit(e)}
                   className='formsheet__form-main'>
                 <div className='formsheet__form-title'>
                     <p className='formsheet__form-title--text'>{this.props.pollData.name}</p>
@@ -58,8 +57,8 @@ export default class FormSheet extends Component{
                     {component}
                     {shouldShowButtons &&
                         <div className='formsheet__button-container'>
-                            <button onClick={() => this.prevQuestion()} className='formsheet__button'>Prev</button>
-                            <button onClick={() => this.nextQuestion()} className='formsheet__button'>Next</button>
+                            <button type="button" onClick={() => this.prevQuestion()} className='formsheet__button'>Prev</button>
+                            <button type="button" onClick={() => this.nextQuestion()} className='formsheet__button'>Next</button>
                         </div>}
                 </div>
             </form>
@@ -106,7 +105,7 @@ export default class FormSheet extends Component{
                 <div>
                     <p>Dziękujemy za wypełnienie ankiety</p>
                     <button onClick={() => this.prevQuestion()}>Prev</button>
-                    <input type="submit" value='Submit'/>
+                    <button onClick={e => this.letsSubmit(e)} value='Submit'>Submit</button>
                 </div>
             )
         }
