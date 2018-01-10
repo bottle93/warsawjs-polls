@@ -21,11 +21,11 @@ class Poll(BaseModel):
 
 class Question(BaseModel):
     TEXT = 'text'
-    OPTIONS = 'options'
+    OPTION = 'option'
     SCORE = 'score'
     AVAILABLE_TYPES = (
         (TEXT, 'Text question'),
-        (OPTIONS, 'One of provided options'),
+        (OPTION, 'One of provided options'),
         (SCORE, '1-5 Score range'),
     )
 
