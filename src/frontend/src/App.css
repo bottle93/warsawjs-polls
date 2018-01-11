@@ -40,7 +40,6 @@ body {
 }
 
 .question-value--container {
-  padding-top: 30px;
   min-height: 20vh;
   text-align: center;
 }
@@ -61,7 +60,7 @@ body {
 
 .formsheet__form-title {
   text-align: center;
-  height: 80px;
+  height: 70px;
 }
 
 .formsheet__question-text {
@@ -69,6 +68,7 @@ body {
   height: 70px;
   width: 100%;
   margin-left: 0;
+  margin-top: 50px;
   padding: 15px 0;
 }
 
@@ -196,7 +196,6 @@ fieldset, legend {
 }
 
 .pollscore__input {
-  margin-top: 9px;
   margin-left: -40px;
   position: absolute;
   display: inline-block;
