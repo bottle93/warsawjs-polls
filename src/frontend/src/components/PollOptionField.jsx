@@ -6,22 +6,25 @@ export default class PollOptionField extends Component {
         return (
             <fieldset className='polloptionfield__main'>
                 <legend>
-                    <p> {this.props.questionText} </p>
+                    <h2 className='formsheet__question-text'> {this.props.questionText} </h2>
                 </legend>
-                {this.props.options.map((elem)=> {
-                    return(
-                        <div key={elem.id} className='polloptionfield__label-container'>
-                            <input
-                                type="radio"
-                                id={elem.id}
-                                name={elem.question}
-                                value={elem.id}
-                                onChange={e => this.props.onChange(e.target.value)}
-                            />
-                            <label htmlFor={elem.id}> {elem.text} </label>
-                        </div>
-                    )
-                })}
+                <div className='question-value--container'>
+                    {this.props.options.map((elem)=> {
+                        return(
+                            <div key={elem.id} className='polloptionfield__label-container'>
+                                <input
+                                    className='polloptionfield__input'
+                                    type="radio"
+                                    id={elem.id}
+                                    name={elem.question}
+                                    value={elem.id}
+                                    onChange={e => this.props.onChange(e.target.value)}
+                                />
+                                <label htmlFor={elem.id} className='polloptionfield__label'> {elem.text} </label>
+                            </div>
+                        )
+                    })}
+                </div>
             </fieldset>
         )
     }

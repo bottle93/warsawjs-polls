@@ -11,6 +11,7 @@ export default class FormSheet extends Component{
             data: {},
             currentQuestionNumber: 0,
             error : false,
+            buttonStatus :'',
         }
     }
 
@@ -23,6 +24,10 @@ export default class FormSheet extends Component{
     letsSubmit(e){
         e.preventDefault();
         this.props.onSubmit(this.state.data)
+        this.setState({
+            buttonStatus: 'disabled'
+        })
+
     }
 
     nextQuestion(){
@@ -53,16 +58,17 @@ export default class FormSheet extends Component{
     renderComponent(component) {
         const shouldShowButtons = this.state.currentQuestionNumber !== this.props.pollData.questions.length;
         const showAlert = Object.values(this.state.data)[this.state.currentQuestionNumber] === undefined && this.state.error === true;
+
         return (
             <form action=""
                   className='formsheet__form-main'>
                 <div className='formsheet__form-title'>
-                    <p className='formsheet__form-title--text'>{this.props.pollData.name}</p>
+                    <h1 className='formsheet__form-title--text'>{this.props.pollData.name}</h1>
                     <Progress completed={100/(this.props.pollData.questions.length) * (this.state.currentQuestionNumber)}/>
                 </div>
-                <div>
+                <div className='formsheet__generated-question'>
                     {component}
-                    {showAlert && <div>
+                    {showAlert && <div className='formsheet__question--alert'>
                         Proszę wprowadzić odpowiedź
                     </div>}
                     {shouldShowButtons &&
@@ -70,6 +76,7 @@ export default class FormSheet extends Component{
                             <button type="button" onClick={() => this.prevQuestion()} className='formsheet__button'>Prev</button>
                             <button type="button" onClick={() => this.nextQuestion()} className='formsheet__button'>Next</button>
                         </div>}
+
                 </div>
             </form>
         )
@@ -120,10 +127,12 @@ export default class FormSheet extends Component{
             }
         } else if(this.state.currentQuestionNumber > this.props.pollData.questions.length-1) {
             return this.renderComponent(
-                <div>
-                    <p>Dziękujemy za wypełnienie ankiety</p>
-                    <button onClick={() => this.prevQuestion()}>Prev</button>
-                    <button onClick={e => this.letsSubmit(e)} value='Submit'>Submit</button>
+                <div className='question-value--container'>
+                    <h2>Dziękujemy za wypełnienie ankiety</h2>
+                    <div className='formsheet__button-container'>
+                        <button onClick={() => this.prevQuestion()} className='formsheet__button-submit'>Prev</button>
+                        <button onClick={e => this.letsSubmit(e)} value='Submit' className='formsheet__button-submit' disabled={this.state.buttonStatus}>Submit</button>
+                    </div>
                 </div>
             )
         }

@@ -14,25 +14,30 @@ export default class PollScore extends Component {
         return (
             <fieldset className='pollscore__main'>
                 <legend>
-                    <p> {this.props.questionText} </p>
+                    <h2 className='formsheet__question-text'>
+                        {this.props.questionText}
+                        <span className='polscore__question-score--range'> (1-5)</span></h2>
                 </legend>
-                <label> 1 </label>
-                {this.state.scoreTab.map((elem)=> {
-                    return(
-                        <div key={elem} className='pollscore__input-container'>
-                            <input
-                                className='pollscore__input'
-                                type="radio"
-                                id={elem}
-                                name={this.props.name}
-                                value={elem}
-                                checked={elem === this.props.inputValue}
-                                onChange={e => this.props.onChange(parseInt(e.target.value, 10))}
-                            />
-                        </div>
-                    )
-                })}
-                <label> 5 </label>
+                <div className='question-value--container'>
+                    <label className='pollscore__label'> 1  </label>
+                    {this.state.scoreTab.map((elem)=> {
+                        return(
+                            <div key={elem} className='pollscore__input-container'>
+                                <input
+                                    className='pollscore__input'
+                                    type="radio"
+                                    id={elem}
+                                    name={this.props.name}
+                                    value={elem}
+                                    checked={elem === this.props.inputValue}
+                                    onChange={e => this.props.onChange(parseInt(e.target.value, 10))}
+                                />
+                                <label htmlFor={elem} className='input__style'></label>
+                            </div>
+                        )
+                    })}
+                    <label className='pollscore__label'>5 </label>
+                </div>
             </fieldset>
         )
     }

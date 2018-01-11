@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import FormSheet from './components/FormSheet';
 import axios from 'axios';
+import 'font-awesome/css/font-awesome.min.css';
 
 
 class App extends Component {
@@ -42,8 +43,12 @@ class App extends Component {
     render() {
         if(this.state.data !== null) {
             return (
-                <div>
-                    <a href="/">Powrót</a>
+                <div className='generate__content'>
+                    <div className='header__main'>
+                        <a href="/" className='button__back'>
+                            <i className="fa fa-arrow-left" aria-hidden="true"></i>
+                        </a>
+                    </div>
                     <FormSheet
                         pollData={this.state.data}
                         onSubmit={value => this.submitData(value)} //otrzymanie danych z FormSheet

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 
 export default class Navigation extends Component {
@@ -19,17 +20,21 @@ export default class Navigation extends Component {
     }
 
     render(){
+
         if(this.state.data !== null){
             return (
-                <ul>
-                    {this.state.data.map(elem => {
-                        return (
-                            <li key={elem.id}>
-                                <a href={`/${elem.id}`}>{elem.name}</a>
-                            </li>
+                <div className='nav__main'>
+                    <div className='header__main'></div>
+                    <ul className='nav__list-content'>
+                        {this.state.data.map(elem => {
+                            return (
+                                <Link to={`/${elem.id}`} className='nav__list-element--link'><li key={elem.id} className='nav__list-element'>
+                                    {elem.name}
+                                </li></Link>
+                            )}
                         )}
-                    )}
-                </ul>
+                    </ul>
+                </div>
             )
         } else {
             return (

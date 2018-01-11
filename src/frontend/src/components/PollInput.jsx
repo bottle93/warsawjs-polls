@@ -6,13 +6,20 @@ export default class PollInput extends Component {
     render() {
         return (
             <div className='pollinput__main'>
-                <label> {this.props.questionText} </label>
-                <textarea
+                <label>
+                    <h2 className='formsheet__question-text'>{this.props.questionText}</h2>
+                </label>
+                <div className='question-value--container'>
+                    <textarea
+                    rows='5'
+                    className='pollinput__textarea '
                     type="text"
-                    placeholder='wpisz odpowiedź'
+                    placeholder='Wpisz odpowiedź'
                     value={this.props.inputValue}
                     onChange={e => this.props.onChange(e.target.value)}
                 />
+                </div>
+
             </div>
         )
     }
