@@ -279,6 +279,8 @@ fieldset, legend {
 }
 
 .nav__list-element {
+  display:flex;
+  justify-content: space-between;
   margin: 10px;
   padding: 20px;
   border: 3px solid rgb(150, 8, 12);
@@ -287,7 +289,38 @@ fieldset, legend {
 }
 
 .nav__list-element--link {
+  display: inline-block;
+  box-shadow: 0 0 1px 2px rgb(150, 8, 12);
   color: rgb(150, 8, 12);
   font-weight: ;
   text-decoration: none;
+}
+
+/*CompletedPolls Style*/
+
+.results__main {
+  position: relative;
+  background-color: #fff;
+  margin: 0 auto;
+  max-width: 100vw;
+  border-radius: 15px;
+  box-shadow: 0 0 10px 2px rgba(163,135,46, 0.4);
+  overflow: hidden;
+}
+
+.results__one-poll {
+  margin: 10px;
+  padding: 15px;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 10px 2px #d3d3d3;
+}
+
+.result__title-text {
+  text-align: center;
+}
+
+.result__answer-number {
+  margin: 10px;
+  text-align: center;
 }
