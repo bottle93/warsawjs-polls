@@ -29,12 +29,14 @@ export default class Navigation extends Component {
                         {this.state.data.map(elem => {
                             return (
                                 <li key={elem.id} className='nav__list-element'>
-                                    <Link to={`/${elem.id}`} className='nav__list-element--link'>
-                                        {elem.name}
-                                    </Link>
-                                    <Link to={`/${elem.id}/result`} className='nav__list-element--link'>
-                                        Odpowiedzi {elem.name}
-                                    </Link>
+                                    <div className='nav__list-element-name'> {elem.name} </div>
+                                    <div>
+                                        <Link to={`/${elem.id}`} className='nav__list-element--link'>
+                                            Weź udział w ankiecie
+                                        </Link>
+                                        <Link to={`/${elem.id}/result`} className='nav__list-element--link'>
+                                            Odpowiedzi
+                                        </Link></div>
                                 </li>
                             )}
                         )}

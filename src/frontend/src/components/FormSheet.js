@@ -128,7 +128,7 @@ export default class FormSheet extends Component{
         } else if(this.state.currentQuestionNumber > this.props.pollData.questions.length-1) {
             return this.renderComponent(
                 <div className='question-value--container'>
-                    <h2>Dziękujemy za wypełnienie ankiety</h2>
+                    <h2 className='formsheet__ready-to-send'>Dziękujemy za wypełnienie ankiety</h2>
                     <div className='formsheet__button-container'>
                         <button onClick={() => this.prevQuestion()} className='formsheet__button-submit'>Prev</button>
                         <button onClick={e => this.letsSubmit(e)} value='Submit' className='formsheet__button-submit' disabled={this.state.buttonStatus}>Submit</button>
