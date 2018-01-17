@@ -9,7 +9,7 @@
 body {
   margin: 0 auto;
   padding: 10px;
-  max-width: 1440px;
+  max-width: 1280px;
   background-color: rgba(255,245,90, 0.4);
 }
 
@@ -62,15 +62,12 @@ body {
 
 .formsheet__form-title {
   text-align: center;
-  height: 70px;
 }
 
 .formsheet__question-text {
   text-align: left;
-  height: 70px;
   width: 100%;
   margin-left: 0;
-  margin-top: 50px;
   padding: 15px 0;
 }
 
@@ -240,7 +237,7 @@ fieldset, legend {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #E8DF60;
   z-index: 5;
 }
 
@@ -288,25 +285,28 @@ fieldset, legend {
 .nav__list-element {
   display:flex;
   justify-content: space-between;
+  align-items: center;
+  align-self: center;
   margin: 10px;
-  padding: 10px;
+  padding: 5px 15px;
   box-shadow: 0 0 5px 2px #d3d3d3;
   border-radius: 5px;
 }
 
-.nav__list-element-name {
-  margin-top: 5px;
+.nav__list-element-name h1{
+  font-size: 20px;
 }
 
 .nav__list-element--link {
   font-weight: 600;
   display: inline-block;
-  margin-left: 10px;
-  padding:5px;
+  margin-left: 20px;
+  padding:5px 12px;
   box-shadow: 0 0 1px 1px rgb(150, 8, 12);
   border-radius: 3px;
   color: rgb(150, 8, 12);
   text-decoration: none;
+  text-align: center;
 }
 
 /*CompletedPolls Style*/
@@ -336,4 +336,39 @@ fieldset, legend {
 .result__answer-number {
   margin: 10px;
   text-align: center;
+}
+
+@media (max-width: 550px) {
+  .nav__list-element {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .nav__list-element-btn-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__list-element--link {
+    margin: 10px;
+    box-shadow: 0 0 1px 1.5px rgb(150, 8, 12);
+  }
+}
+
+@media (max-width: 450px) {
+  .nav__list-element {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .nav__list-element-btn-container {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+  }
+  .nav__list-element--link {
+    margin-top: 3px;
+    padding: 5px;
+    flex-grow: 2;
+    box-shadow: 0 0 1px 1.5px rgb(150, 8, 12);
+  }
 }
