@@ -21,11 +21,11 @@ class Poll(BaseModel):
 
 class Question(BaseModel):
     TEXT = 'text'
-    OPTIONS = 'options'
+    OPTION = 'option'
     SCORE = 'score'
     AVAILABLE_TYPES = (
         (TEXT, 'Text question'),
-        (OPTIONS, 'One of provided options'),
+        (OPTION, 'One of provided options'),
         (SCORE, '1-5 Score range'),
     )
 
@@ -69,4 +69,5 @@ class QuestionAnswer(BaseModel):
         on_delete='DELETE', null=True, blank=True)
     text = models.TextField(
         null=True, blank=True)
-    score = models.SmallIntegerField()
+    score = models.SmallIntegerField(
+        null=True, blank=True)

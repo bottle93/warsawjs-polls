@@ -18,10 +18,12 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from rest_framework.routers import DefaultRouter
 
-from poll.viewsets import PollViewset
+from poll.viewsets import PollViewset, PollSubmissionsViewset
+
 
 router = DefaultRouter()
 router.register(r'polls', PollViewset)
+router.register(r'submissions', PollSubmissionsViewset)
 
 urlpatterns = [
     path('api/', include(router.urls)),
