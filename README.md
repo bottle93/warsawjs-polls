@@ -31,10 +31,10 @@ $ run-init
 * [X] Create frontend application boilerplate
 * [X] Docker development configuration
 * [X] Basic frontend to view poll questions
-* [ ] Create poll submission when user clicks submit
-* [ ] Add routing to display proper poll
-* [ ] Display errors 
-* [ ] Fix design and styling
+* [X] Create poll submission when user clicks submit
+* [X] Add routing to display proper poll
+* [X] Display errors 
+* [X] Fix design and styling
 
 
 ## API
