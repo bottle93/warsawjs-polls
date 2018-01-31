@@ -1,0 +1,15 @@
+#!/bin/bash -ex
+
+# go back to root dir
+cd "${0%/*}/.."
+source ./commands/common/vars.bash
+
+docker rm -fv $NGINX_BASE_IMAGE $FRONTEND_BUILD_IMAGE || true
+docker build -t $BACKEND_IMAGE src/backend
+docker build -t $NGINX_BASE_IMAGE src/nginx
+docker build -t $FRONTEND_BUILD_IMAGE src/frontend
+docker create --name $NGINX_BASE_IMAGE $NGINX_BASE_IMAGE
+docker run -e BASIC_AUTH=${BASIC_AUTH} --name $FRONTEND_BUILD_IMAGE $FRONTEND_BUILD_IMAGE npm run build
+docker cp ${FRONTEND_BUILD_IMAGE}:/srv/build - | docker cp - ${NGINX_BASE_IMAGE}:/www/data/frontend
+docker commit $NGINX_BASE_IMAGE $FRONTEND_IMAGE
+docker rm -fv $NGINX_BASE_IMAGE $FRONTEND_BUILD_IMAGE

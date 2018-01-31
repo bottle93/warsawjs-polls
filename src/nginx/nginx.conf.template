@@ -1,0 +1,48 @@
+worker_processes  1;
+
+error_log  /dev/stderr warn;
+pid        /var/run/nginx.pid;
+
+events {
+  worker_connections 1024;
+}
+
+http {
+
+  include gzip.conf;
+  include mime.types;
+  include resty-http.conf;
+
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+              '$status $body_bytes_sent "$http_referer" '
+              '"$http_user_agent" "$http_x_forwarded_for"';
+
+  keepalive_timeout 65;
+
+  server {
+    listen 443 ssl;
+
+    include ssl.conf;
+    include resty-server-https.conf;
+
+    location / {
+        error_page 404 =200 /;
+        root /www/data/frontend/dist;
+
+    }
+    location /api/ {
+        proxy_read_timeout 120;
+        proxy_pass http://backend:8000/;
+    }
+}
+
+  server {
+    listen 80 default_server;
+
+    include resty-server-http.conf;
+
+    location / {
+      return 301 https://$host$request_uri;
+    }
+  }
+}

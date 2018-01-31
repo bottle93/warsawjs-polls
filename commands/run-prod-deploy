@@ -1,0 +1,10 @@
+#!/bin/bash -ex
+
+# go back to root dir
+cd "${0%/*}/.."
+source ./commands/common/vars.bash
+
+env > .env
+
+./commands/run-migrate
+docker-compose -f docker-compose.prod.yml up -d

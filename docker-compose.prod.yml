@@ -1,0 +1,23 @@
+version: '2'
+services:
+  nginx:
+    image: ${FRONTEND_IMAGE}
+    ports:
+      - 80:80
+    volumes:
+      - /etc/resty-auto-ssl/:/etc/resty-auto-ssl/
+    environment:
+      NO_SSL: 'true'
+    command: wait-for-it backend:8000 -t 10 -s -- /usr/local/openresty/bin/openresty -g 'daemon off;'
+    restart: always
+
+  database:
+    image: postgres
+    volumes:
+     - /var/lib/postgresql/data
+    restart: always
+
+  backend:
+    image: ${BACKEND_IMAGE}
+    command: wait-for-it database:5432 -t 10 -s -- gunicorn poll.wsgi:application --bind 0.0.0.0:8000
+    restart: on-failure

@@ -5,8 +5,8 @@ WORKDIR /srv
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-ADD https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh /usr/bin/
-RUN chmod +x /usr/bin/wait-for-it.sh
+ADD https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh /bin/wait-for-it
+RUN chmod +x /bin/wait-for-it
 
 COPY . .
 
