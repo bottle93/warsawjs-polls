@@ -31,7 +31,7 @@ http {
     }
 
     location /django_static {
-        root /static;
+        alias /static;
     }
 
     location ~ ^/(api|admin) {
