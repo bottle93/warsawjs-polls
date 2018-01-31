@@ -27,7 +27,7 @@ http {
 
     location / {
         error_page 404 =200 /;
-        root /www/data/frontend/dist;
+        root /www/data/frontend/build;
 
     }
     location /api/ {
