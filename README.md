@@ -47,3 +47,13 @@ Example of request creating response of poll:
 curl -XPOST -H "Content-Type: application/json" localhost:8000/api/submissions/ \
   -d '{"poll": 2, "answers": [{"question": 3, "text": "test"}, {"question": 2, "score": 5}]}'
 ```
+
+# Deployment
+
+Run following scripts
+
+```bash
+# they are in 'commands' directory
+run-prod-build
+run-prod-deploy
+```
