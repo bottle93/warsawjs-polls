@@ -30,7 +30,8 @@ http {
         root /www/data/frontend/build;
 
     }
-    location /api/ {
+
+    location ~ ^/(api|admin)/ {
         proxy_read_timeout 120;
         proxy_pass http://backend:8000;
     }
