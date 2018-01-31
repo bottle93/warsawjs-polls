@@ -7,6 +7,8 @@ services:
     build: src/backend
     volumes:
       - ./src/backend:/srv
+    environment:
+      DEBUG: 'true'
     ports:
       - 8000:8000
     command: wait-for-it -s -t 10 database:5432 -- python -u manage.py runserver 0.0.0.0:8000
