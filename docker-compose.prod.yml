@@ -6,6 +6,7 @@ services:
       - 80:80
     volumes:
       - /etc/resty-auto-ssl/:/etc/resty-auto-ssl/
+      - polls-static:/static/
     environment:
       NO_SSL: 'true'
     command: wait-for-it backend:8000 -t 10 -s -- /usr/local/openresty/bin/openresty -g 'daemon off;'
@@ -20,4 +21,10 @@ services:
   backend:
     image: ${BACKEND_IMAGE}
     command: wait-for-it database:5432 -t 10 -s -- gunicorn poll.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - polls-static:/static/
     restart: on-failure
+
+
+volumes:
+  polls-static:

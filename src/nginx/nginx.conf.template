@@ -28,10 +28,13 @@ http {
     location / {
         error_page 404 =200 /;
         root /www/data/frontend/build;
-
     }
 
-    location ~ ^/(api|admin)/ {
+    location /django_static {
+        root /static;
+    }
+
+    location ~ ^/(api|admin) {
         proxy_read_timeout 120;
         proxy_pass http://backend:8000;
     }

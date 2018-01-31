@@ -29,7 +29,12 @@ http {
         add_header Content-Type text/plain;
       }
     }
-    location ~ ^/(api|admin)/ {
+
+    location /django_static {
+        root /static;
+    }
+
+    location ~ ^/(api|admin) {
       proxy_read_timeout 120;
       proxy_pass http://backend:8000;
     }
